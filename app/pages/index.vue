@@ -1,5 +1,5 @@
 <template>
-  <div class="min-h-screen relative">
+  <div class="min-h-screen relative overflow-x-hidden">
     <!-- Dot Pattern Background -->
     <div class="fixed inset-0 dot-pattern pointer-events-none"></div>
 
@@ -26,37 +26,16 @@
 
     <!-- Hero Section -->
     <section class="pt-32 pb-20 px-6 relative">
-      <!-- Decorative lines -->
-      <div class="absolute top-20 left-10 w-32 h-px bg-gradient-to-r from-transparent via-gray-300 to-transparent hidden lg:block"></div>
-      <div class="absolute top-32 right-16 w-24 h-px bg-gradient-to-r from-transparent via-gray-300 to-transparent hidden lg:block"></div>
-      <div class="absolute bottom-32 left-20 w-20 h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent hidden lg:block"></div>
-
       <div class="max-w-4xl mx-auto text-center relative">
         <div class="inline-flex items-center gap-2 px-3 py-1 mb-6 text-xs font-medium text-gray-600 bg-gray-100 rounded-full">
           <span class="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse"></span>
           Now in beta
         </div>
 
-        <!-- Hero heading with line decorations -->
-        <div class="relative inline-block">
-          <!-- Left lines -->
-          <div class="absolute -left-16 top-1/2 -translate-y-1/2 hidden md:flex flex-col gap-2">
-            <div class="w-12 h-px bg-gray-300"></div>
-            <div class="w-8 h-px bg-gray-200"></div>
-            <div class="w-10 h-px bg-gray-300"></div>
-          </div>
-          <!-- Right lines -->
-          <div class="absolute -right-16 top-1/2 -translate-y-1/2 hidden md:flex flex-col gap-2 items-end">
-            <div class="w-10 h-px bg-gray-300"></div>
-            <div class="w-12 h-px bg-gray-200"></div>
-            <div class="w-8 h-px bg-gray-300"></div>
-          </div>
-
-          <h1 class="text-5xl md:text-7xl font-semibold text-gray-900 tracking-tight leading-tight mb-6">
-            Chat without<br />
-            <span class="text-gray-400">the clutter</span>
-          </h1>
-        </div>
+        <h1 class="text-5xl md:text-7xl font-semibold text-gray-900 tracking-tight leading-tight mb-6">
+          Chat without<br />
+          <span class="text-gray-400">the clutter</span>
+        </h1>
 
         <p class="text-lg md:text-xl text-gray-500 max-w-2xl mx-auto mb-10 leading-relaxed">
           A minimal chat experience designed for focused conversations.
@@ -73,8 +52,14 @@
       </div>
     </section>
 
+    <!-- Divider Line with Crosses -->
+    <div class="divider-line">
+      <span class="cross left">+</span>
+      <span class="cross right">+</span>
+    </div>
+
     <!-- Preview Section -->
-    <section class="px-6 pb-20 relative">
+    <section class="px-6 py-20 relative">
       <div class="max-w-4xl mx-auto">
         <div class="relative bg-gray-50/80 backdrop-blur-sm rounded-2xl border border-gray-200 p-8 overflow-hidden">
           <div class="absolute inset-0 bg-gradient-to-b from-transparent to-white/80 pointer-events-none z-10"></div>
@@ -106,17 +91,16 @@
       </div>
     </section>
 
+    <!-- Divider Line with Crosses -->
+    <div class="divider-line">
+      <span class="cross left">+</span>
+      <span class="cross right">+</span>
+    </div>
+
     <!-- Features Section -->
     <section id="features" class="px-6 py-20 bg-gray-50/50 relative">
       <div class="max-w-6xl mx-auto">
-        <div class="text-center mb-16 relative">
-          <!-- Decorative lines around heading -->
-          <div class="flex items-center justify-center gap-4 mb-4">
-            <div class="w-16 h-px bg-gradient-to-r from-transparent to-gray-300"></div>
-            <div class="w-2 h-2 rounded-full border border-gray-300"></div>
-            <div class="w-16 h-px bg-gradient-to-l from-transparent to-gray-300"></div>
-          </div>
-
+        <div class="text-center mb-16">
           <h2 class="text-3xl md:text-4xl font-semibold text-gray-900 mb-4">
             Designed for simplicity
           </h2>
@@ -165,18 +149,15 @@
       </div>
     </section>
 
+    <!-- Divider Line with Crosses -->
+    <div class="divider-line">
+      <span class="cross left">+</span>
+      <span class="cross right">+</span>
+    </div>
+
     <!-- About Section -->
     <section id="about" class="px-6 py-20 relative">
       <div class="max-w-4xl mx-auto text-center">
-        <!-- Decorative lines -->
-        <div class="flex items-center justify-center gap-4 mb-6">
-          <div class="w-12 h-px bg-gray-200"></div>
-          <div class="w-1.5 h-1.5 rounded-full bg-gray-300"></div>
-          <div class="w-20 h-px bg-gray-300"></div>
-          <div class="w-1.5 h-1.5 rounded-full bg-gray-300"></div>
-          <div class="w-12 h-px bg-gray-200"></div>
-        </div>
-
         <h2 class="text-3xl md:text-4xl font-semibold text-gray-900 mb-6">
           Built for humans
         </h2>
@@ -188,32 +169,38 @@
       </div>
     </section>
 
+    <!-- Divider Line with Crosses -->
+    <div class="divider-line">
+      <span class="cross left">+</span>
+      <span class="cross right">+</span>
+    </div>
+
     <!-- CTA Section -->
     <section class="px-6 py-20">
       <div class="max-w-4xl mx-auto">
         <div class="bg-gray-900 rounded-3xl p-12 md:p-16 text-center relative overflow-hidden">
-          <!-- Subtle line decoration in CTA -->
-          <div class="absolute top-8 left-8 w-16 h-px bg-gray-700"></div>
-          <div class="absolute top-8 right-8 w-16 h-px bg-gray-700"></div>
-          <div class="absolute bottom-8 left-8 w-12 h-px bg-gray-800"></div>
-          <div class="absolute bottom-8 right-8 w-12 h-px bg-gray-800"></div>
-
-          <h2 class="text-3xl md:text-4xl font-semibold text-white mb-4 relative">
+          <h2 class="text-3xl md:text-4xl font-semibold text-white mb-4">
             Ready to simplify?
           </h2>
-          <p class="text-gray-400 mb-8 max-w-lg mx-auto relative">
+          <p class="text-gray-400 mb-8 max-w-lg mx-auto">
             Join thousands of users who have already made the switch to
             distraction-free messaging.
           </p>
-          <button class="px-8 py-4 text-base font-medium text-gray-900 bg-white rounded-xl hover:bg-gray-100 transition-colors relative">
+          <button class="px-8 py-4 text-base font-medium text-gray-900 bg-white rounded-xl hover:bg-gray-100 transition-colors">
             Get started for free
           </button>
         </div>
       </div>
     </section>
 
+    <!-- Divider Line with Crosses -->
+    <div class="divider-line">
+      <span class="cross left">+</span>
+      <span class="cross right">+</span>
+    </div>
+
     <!-- Footer -->
-    <footer class="px-6 py-12 border-t border-gray-100 bg-white/80 backdrop-blur-sm relative">
+    <footer class="px-6 py-12 bg-white/80 backdrop-blur-sm relative">
       <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
         <div class="flex items-center gap-2">
           <div class="w-6 h-6 bg-gray-900 rounded-md flex items-center justify-center">
@@ -241,5 +228,41 @@
   background-image: radial-gradient(circle, #d4d4d4 1px, transparent 1px);
   background-size: 24px 24px;
   opacity: 0.4;
+}
+
+/* Full-width divider line with cross marks */
+.divider-line {
+  position: relative;
+  width: 100%;
+  height: 1px;
+  background-color: #e5e5e5;
+}
+
+.divider-line .cross {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 14px;
+  font-weight: 300;
+  color: #a3a3a3;
+  line-height: 1;
+  user-select: none;
+}
+
+.divider-line .cross.left {
+  left: 24px;
+}
+
+.divider-line .cross.right {
+  right: 24px;
+}
+
+@media (min-width: 768px) {
+  .divider-line .cross.left {
+    left: 48px;
+  }
+  .divider-line .cross.right {
+    right: 48px;
+  }
 }
 </style>
