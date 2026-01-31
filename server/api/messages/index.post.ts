@@ -1,6 +1,6 @@
-import { prisma } from '~/server/utils/db'
-import { requireAuth } from '~/server/utils/auth'
-import { sendToRoom, sendToUser } from '~/server/utils/pusher'
+import { prisma } from '../../utils/db'
+import { requireAuth } from '../../utils/auth'
+import { sendToRoom, sendToUser } from '../../utils/pusher'
 
 export default defineEventHandler(async (event) => {
   const user = await requireAuth(event)

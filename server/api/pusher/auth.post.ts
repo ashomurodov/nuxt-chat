@@ -1,5 +1,5 @@
-import { requireAuth } from '~/server/utils/auth'
-import { getPusher } from '~/server/utils/pusher'
+import { requireAuth } from '../../utils/auth'
+import { getPusher } from '../../utils/pusher'
 
 export default defineEventHandler(async (event) => {
   const user = await requireAuth(event)
