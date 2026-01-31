@@ -17,9 +17,9 @@
         <div class="flex items-center gap-8">
           <a href="#features" class="text-sm text-gray-600 hover:text-gray-900 transition-colors">Features</a>
           <a href="#about" class="text-sm text-gray-600 hover:text-gray-900 transition-colors">About</a>
-          <button class="px-4 py-2 text-sm font-medium text-white bg-gray-900 rounded-lg hover:bg-gray-800 transition-colors">
+          <NuxtLink to="/login" class="px-4 py-2 text-sm font-medium text-white bg-gray-900 rounded-lg hover:bg-gray-800 transition-colors">
             Get Started
-          </button>
+          </NuxtLink>
         </div>
       </div>
     </nav>
@@ -42,12 +42,12 @@
           No distractions, no noise — just you and your messages.
         </p>
         <div class="flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-in-up delay-4">
-          <button class="w-full sm:w-auto px-8 py-4 text-base font-medium text-white bg-gray-900 rounded-xl hover:bg-gray-800 transition-all hover:shadow-lg hover:shadow-gray-900/20 hover:scale-105">
+          <NuxtLink to="/register" class="w-full sm:w-auto px-8 py-4 text-base font-medium text-white bg-gray-900 rounded-xl hover:bg-gray-800 transition-all hover:shadow-lg hover:shadow-gray-900/20 hover:scale-105 text-center">
             Start chatting
-          </button>
-          <button class="w-full sm:w-auto px-8 py-4 text-base font-medium text-gray-700 bg-gray-100 rounded-xl hover:bg-gray-200 transition-all hover:scale-105">
+          </NuxtLink>
+          <a href="#features" class="w-full sm:w-auto px-8 py-4 text-base font-medium text-gray-700 bg-gray-100 rounded-xl hover:bg-gray-200 transition-all hover:scale-105 text-center">
             Learn more
-          </button>
+          </a>
         </div>
       </div>
     </section>
