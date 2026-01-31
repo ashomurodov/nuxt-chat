@@ -1,10 +1,10 @@
 <template>
   <div class="min-h-screen relative overflow-x-hidden">
     <!-- Dot Pattern Background -->
-    <div class="fixed inset-0 dot-pattern pointer-events-none"></div>
+    <div class="fixed inset-0 dot-pattern pointer-events-none animate-fade-in"></div>
 
     <!-- Navigation -->
-    <nav class="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-100">
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-100 animate-slide-down">
       <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
         <div class="flex items-center gap-2">
           <div class="w-8 h-8 bg-gray-900 rounded-lg flex items-center justify-center">
@@ -17,9 +17,9 @@
         <div class="flex items-center gap-8">
           <a href="#features" class="text-sm text-gray-600 hover:text-gray-900 transition-colors">Features</a>
           <a href="#about" class="text-sm text-gray-600 hover:text-gray-900 transition-colors">About</a>
-          <button class="px-4 py-2 text-sm font-medium text-white bg-gray-900 rounded-lg hover:bg-gray-800 transition-colors">
+          <NuxtLink to="/login" class="px-4 py-2 text-sm font-medium text-white bg-gray-900 rounded-lg hover:bg-gray-800 transition-colors">
             Get Started
-          </button>
+          </NuxtLink>
         </div>
       </div>
     </nav>
@@ -27,60 +27,60 @@
     <!-- Hero Section -->
     <section class="pt-32 pb-20 px-6 relative">
       <div class="max-w-4xl mx-auto text-center relative">
-        <div class="inline-flex items-center gap-2 px-3 py-1 mb-6 text-xs font-medium text-gray-600 bg-gray-100 rounded-full">
+        <div class="inline-flex items-center gap-2 px-3 py-1 mb-6 text-xs font-medium text-gray-600 bg-gray-100 rounded-full animate-fade-in-up delay-1">
           <span class="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse"></span>
           Now in beta
         </div>
 
-        <h1 class="text-5xl md:text-7xl font-semibold text-gray-900 tracking-tight leading-tight mb-6">
+        <h1 class="text-5xl md:text-7xl font-semibold text-gray-900 tracking-tight leading-tight mb-6 animate-fade-in-up delay-2">
           Chat without<br />
           <span class="text-gray-400">the clutter</span>
         </h1>
 
-        <p class="text-lg md:text-xl text-gray-500 max-w-2xl mx-auto mb-10 leading-relaxed">
+        <p class="text-lg md:text-xl text-gray-500 max-w-2xl mx-auto mb-10 leading-relaxed animate-fade-in-up delay-3">
           A minimal chat experience designed for focused conversations.
           No distractions, no noise — just you and your messages.
         </p>
-        <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-          <button class="w-full sm:w-auto px-8 py-4 text-base font-medium text-white bg-gray-900 rounded-xl hover:bg-gray-800 transition-all hover:shadow-lg hover:shadow-gray-900/20">
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-in-up delay-4">
+          <NuxtLink to="/register" class="w-full sm:w-auto px-8 py-4 text-base font-medium text-white bg-gray-900 rounded-xl hover:bg-gray-800 transition-all hover:shadow-lg hover:shadow-gray-900/20 hover:scale-105 text-center">
             Start chatting
-          </button>
-          <button class="w-full sm:w-auto px-8 py-4 text-base font-medium text-gray-700 bg-gray-100 rounded-xl hover:bg-gray-200 transition-colors">
+          </NuxtLink>
+          <a href="#features" class="w-full sm:w-auto px-8 py-4 text-base font-medium text-gray-700 bg-gray-100 rounded-xl hover:bg-gray-200 transition-all hover:scale-105 text-center">
             Learn more
-          </button>
+          </a>
         </div>
       </div>
     </section>
 
     <!-- Divider Line with Crosses -->
-    <div class="divider-line">
+    <div class="divider-line animate-line-expand delay-5">
       <span class="cross left">+</span>
       <span class="cross right">+</span>
     </div>
 
     <!-- Preview Section -->
     <section class="px-6 py-20 relative">
-      <div class="max-w-4xl mx-auto">
-        <div class="relative bg-gray-50/80 backdrop-blur-sm rounded-2xl border border-gray-200 p-8 overflow-hidden">
+      <div class="max-w-4xl mx-auto animate-fade-in-up delay-5">
+        <div class="relative bg-gray-50/80 backdrop-blur-sm rounded-2xl border border-gray-200 p-8 overflow-hidden hover:shadow-xl transition-shadow duration-500">
           <div class="absolute inset-0 bg-gradient-to-b from-transparent to-white/80 pointer-events-none z-10"></div>
 
           <!-- Mock Chat Interface -->
           <div class="space-y-4">
-            <div class="flex gap-3">
+            <div class="flex gap-3 animate-chat-message delay-6">
               <div class="w-8 h-8 bg-gray-300 rounded-full flex-shrink-0"></div>
               <div class="bg-white rounded-2xl rounded-tl-md px-4 py-3 shadow-sm border border-gray-100 max-w-md">
                 <p class="text-gray-700 text-sm">Hey, how's the project coming along?</p>
               </div>
             </div>
 
-            <div class="flex gap-3 justify-end">
+            <div class="flex gap-3 justify-end animate-chat-message delay-7">
               <div class="bg-gray-900 rounded-2xl rounded-tr-md px-4 py-3 max-w-md">
                 <p class="text-white text-sm">Going great! Just finished the landing page.</p>
               </div>
               <div class="w-8 h-8 bg-gray-900 rounded-full flex-shrink-0"></div>
             </div>
 
-            <div class="flex gap-3">
+            <div class="flex gap-3 animate-chat-message delay-8">
               <div class="w-8 h-8 bg-gray-300 rounded-full flex-shrink-0"></div>
               <div class="bg-white rounded-2xl rounded-tl-md px-4 py-3 shadow-sm border border-gray-100 max-w-md">
                 <p class="text-gray-700 text-sm">Looks minimal and clean. Love it!</p>
@@ -92,7 +92,7 @@
     </section>
 
     <!-- Divider Line with Crosses -->
-    <div class="divider-line">
+    <div class="divider-line animate-line-expand delay-6">
       <span class="cross left">+</span>
       <span class="cross right">+</span>
     </div>
@@ -101,16 +101,16 @@
     <section id="features" class="px-6 py-20 bg-gray-50/50 relative">
       <div class="max-w-6xl mx-auto">
         <div class="text-center mb-16">
-          <h2 class="text-3xl md:text-4xl font-semibold text-gray-900 mb-4">
+          <h2 class="text-3xl md:text-4xl font-semibold text-gray-900 mb-4 animate-fade-in-up delay-6">
             Designed for simplicity
           </h2>
-          <p class="text-gray-500 max-w-xl mx-auto">
+          <p class="text-gray-500 max-w-xl mx-auto animate-fade-in-up delay-7">
             Every feature serves a purpose. Nothing more, nothing less.
           </p>
         </div>
 
         <div class="grid md:grid-cols-3 gap-8">
-          <div class="bg-white/80 backdrop-blur-sm p-8 rounded-2xl border border-gray-200">
+          <div class="bg-white/80 backdrop-blur-sm p-8 rounded-2xl border border-gray-200 animate-fade-in-up delay-7 hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
             <div class="w-12 h-12 bg-gray-100 rounded-xl flex items-center justify-center mb-6">
               <svg class="w-6 h-6 text-gray-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 10V3L4 14h7v7l9-11h-7z" />
@@ -122,7 +122,7 @@
             </p>
           </div>
 
-          <div class="bg-white/80 backdrop-blur-sm p-8 rounded-2xl border border-gray-200">
+          <div class="bg-white/80 backdrop-blur-sm p-8 rounded-2xl border border-gray-200 animate-fade-in-up delay-8 hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
             <div class="w-12 h-12 bg-gray-100 rounded-xl flex items-center justify-center mb-6">
               <svg class="w-6 h-6 text-gray-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
@@ -134,7 +134,7 @@
             </p>
           </div>
 
-          <div class="bg-white/80 backdrop-blur-sm p-8 rounded-2xl border border-gray-200">
+          <div class="bg-white/80 backdrop-blur-sm p-8 rounded-2xl border border-gray-200 animate-fade-in-up delay-9 hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
             <div class="w-12 h-12 bg-gray-100 rounded-xl flex items-center justify-center mb-6">
               <svg class="w-6 h-6 text-gray-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z" />
@@ -150,7 +150,7 @@
     </section>
 
     <!-- Divider Line with Crosses -->
-    <div class="divider-line">
+    <div class="divider-line animate-line-expand delay-7">
       <span class="cross left">+</span>
       <span class="cross right">+</span>
     </div>
@@ -158,10 +158,10 @@
     <!-- About Section -->
     <section id="about" class="px-6 py-20 relative">
       <div class="max-w-4xl mx-auto text-center">
-        <h2 class="text-3xl md:text-4xl font-semibold text-gray-900 mb-6">
+        <h2 class="text-3xl md:text-4xl font-semibold text-gray-900 mb-6 animate-fade-in-up delay-7">
           Built for humans
         </h2>
-        <p class="text-gray-500 text-lg leading-relaxed max-w-2xl mx-auto">
+        <p class="text-gray-500 text-lg leading-relaxed max-w-2xl mx-auto animate-fade-in-up delay-8">
           We believe communication should be effortless. Nuxt Chat strips away
           the complexity found in modern messaging apps, leaving you with a
           pure, focused experience.
@@ -170,15 +170,15 @@
     </section>
 
     <!-- Divider Line with Crosses -->
-    <div class="divider-line">
+    <div class="divider-line animate-line-expand delay-8">
       <span class="cross left">+</span>
       <span class="cross right">+</span>
     </div>
 
     <!-- CTA Section -->
     <section class="px-6 py-20">
-      <div class="max-w-4xl mx-auto">
-        <div class="bg-gray-900 rounded-3xl p-12 md:p-16 text-center relative overflow-hidden">
+      <div class="max-w-4xl mx-auto animate-fade-in-up delay-8">
+        <div class="bg-gray-900 rounded-3xl p-12 md:p-16 text-center relative overflow-hidden hover:shadow-2xl transition-shadow duration-500">
           <h2 class="text-3xl md:text-4xl font-semibold text-white mb-4">
             Ready to simplify?
           </h2>
@@ -186,7 +186,7 @@
             Join thousands of users who have already made the switch to
             distraction-free messaging.
           </p>
-          <button class="px-8 py-4 text-base font-medium text-gray-900 bg-white rounded-xl hover:bg-gray-100 transition-colors">
+          <button class="px-8 py-4 text-base font-medium text-gray-900 bg-white rounded-xl hover:bg-gray-100 transition-all hover:scale-105">
             Get started for free
           </button>
         </div>
@@ -194,13 +194,13 @@
     </section>
 
     <!-- Divider Line with Crosses -->
-    <div class="divider-line">
+    <div class="divider-line animate-line-expand delay-9">
       <span class="cross left">+</span>
       <span class="cross right">+</span>
     </div>
 
     <!-- Footer -->
-    <footer class="px-6 py-12 bg-white/80 backdrop-blur-sm relative">
+    <footer class="px-6 py-12 bg-white/80 backdrop-blur-sm relative animate-fade-in delay-9">
       <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
         <div class="flex items-center gap-2">
           <div class="w-6 h-6 bg-gray-900 rounded-md flex items-center justify-center">
@@ -263,6 +263,109 @@
   }
   .divider-line .cross.right {
     right: 48px;
+  }
+}
+
+/* ===== ANIMATIONS ===== */
+
+/* Fade in */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Fade in and slide up */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Slide down from top */
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Line expand from center */
+@keyframes lineExpand {
+  from {
+    transform: scaleX(0);
+    opacity: 0;
+  }
+  to {
+    transform: scaleX(1);
+    opacity: 1;
+  }
+}
+
+/* Chat message pop in */
+@keyframes chatMessage {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Animation classes */
+.animate-fade-in {
+  animation: fadeIn 0.8s ease-out forwards;
+}
+
+.animate-fade-in-up {
+  opacity: 0;
+  animation: fadeInUp 0.8s ease-out forwards;
+}
+
+.animate-slide-down {
+  animation: slideDown 0.6s ease-out forwards;
+}
+
+.animate-line-expand {
+  transform-origin: center;
+  animation: lineExpand 0.8s ease-out forwards;
+}
+
+.animate-chat-message {
+  opacity: 0;
+  animation: chatMessage 0.5s ease-out forwards;
+}
+
+/* Delay classes */
+.delay-1 { animation-delay: 0.1s; }
+.delay-2 { animation-delay: 0.2s; }
+.delay-3 { animation-delay: 0.4s; }
+.delay-4 { animation-delay: 0.6s; }
+.delay-5 { animation-delay: 0.8s; }
+.delay-6 { animation-delay: 1.0s; }
+.delay-7 { animation-delay: 1.2s; }
+.delay-8 { animation-delay: 1.4s; }
+.delay-9 { animation-delay: 1.6s; }
+
+/* Respect reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-delay: 0s !important;
   }
 }
 </style>
