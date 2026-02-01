@@ -1,11 +1,13 @@
 <template>
   <main class="flex-1 flex flex-col">
-    <ChatEmptyState v-if="!room" />
+    <ChatEmptyState v-if="!room" :show-menu-button="!isSidebarOpen" @open-sidebar="$emit('open-sidebar')" />
     <template v-else>
       <ChatHeader
         :room="room"
         :current-user-id="currentUserId"
+        :show-menu-button="!isSidebarOpen"
         @close="$emit('close')"
+        @open-sidebar="$emit('open-sidebar')"
       />
       <ChatMessages
         ref="messagesRef"
@@ -30,6 +32,7 @@ interface Props {
   isLoading: boolean
   isSending: boolean
   currentUserId: string
+  isSidebarOpen?: boolean
 }
 
 defineProps<Props>()
@@ -37,6 +40,7 @@ defineProps<Props>()
 const emit = defineEmits<{
   'send-message': [content: string]
   close: []
+  'open-sidebar': []
 }>()
 
 const messagesRef = ref<{ scrollToBottom: () => void } | null>(null)
