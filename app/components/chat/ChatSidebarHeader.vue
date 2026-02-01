@@ -8,20 +8,32 @@
       </div>
       <span class="font-semibold text-gray-900">Chats</span>
     </div>
-    <button
-      @click="$emit('new-chat')"
-      class="p-2 hover:bg-gray-100 rounded-lg transition-colors"
-      title="New chat"
-    >
-      <svg class="w-5 h-5 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
-      </svg>
-    </button>
+    <div class="flex items-center gap-1">
+      <button
+        @click="$emit('new-chat')"
+        class="p-2 hover:bg-gray-100 rounded-lg transition-colors"
+        title="New chat"
+      >
+        <svg class="w-5 h-5 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+        </svg>
+      </button>
+      <button
+        @click="$emit('close')"
+        class="p-2 hover:bg-gray-100 rounded-lg transition-colors"
+        title="Close sidebar"
+      >
+        <svg class="w-5 h-5 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 19l-7-7 7-7m8 14l-7-7 7-7" />
+        </svg>
+      </button>
+    </div>
   </div>
 </template>
 
 <script setup lang="ts">
 defineEmits<{
   'new-chat': []
+  'close': []
 }>()
 </script>

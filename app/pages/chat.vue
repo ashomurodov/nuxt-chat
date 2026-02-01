@@ -1,6 +1,7 @@
 <template>
   <div class="h-screen flex bg-white">
     <ChatSidebar
+      v-show="isSidebarOpen"
       :rooms="filteredRooms"
       :selected-room="selectedRoom"
       :is-loading="isLoadingRooms"
@@ -8,6 +9,7 @@
       v-model:search-query="searchQuery"
       @select-room="handleSelectRoom"
       @new-chat="showNewChat = true"
+      @close="isSidebarOpen = false"
       @logout="logout"
     />
 
@@ -18,8 +20,10 @@
       :is-loading="isLoadingMessages"
       :is-sending="isSending"
       :current-user-id="user?.id ?? ''"
+      :is-sidebar-open="isSidebarOpen"
       @send-message="handleSendMessage"
       @close="handleSelectRoom(null)"
+      @open-sidebar="isSidebarOpen = true"
     />
 
     <ChatNewChatModal
@@ -70,6 +74,7 @@ const {
 const { startChat } = useUserSearch()
 
 const showNewChat = ref(false)
+const isSidebarOpen = ref(true)
 const chatAreaRef = ref<{ scrollToBottom: () => void } | null>(null)
 
 function handleSelectRoom(room: Room | null) {

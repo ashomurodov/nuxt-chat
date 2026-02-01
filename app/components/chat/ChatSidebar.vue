@@ -1,7 +1,7 @@
 <template>
   <aside class="w-80 border-r border-gray-200 flex flex-col">
     <div class="p-4 border-b border-gray-200">
-      <ChatSidebarHeader @new-chat="$emit('new-chat')" />
+      <ChatSidebarHeader @new-chat="$emit('new-chat')" @close="$emit('close')" />
       <ChatSearchInput
         v-model="searchQuery"
         placeholder="Search conversations..."
@@ -41,6 +41,7 @@ const searchQuery = defineModel<string>('searchQuery', { default: '' })
 defineEmits<{
   'select-room': [room: Room]
   'new-chat': []
+  'close': []
   logout: []
 }>()
 </script>
