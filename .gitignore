@@ -26,3 +26,6 @@ logs
 # Prisma
 prisma/*.db
 prisma/*.db-journal
+
+# Claude
+.claude
