@@ -115,10 +115,19 @@
               {{ getRoomDisplayName(selectedRoom).charAt(0).toUpperCase() }}
             </span>
           </div>
-          <div>
+          <div class="flex-1">
             <h2 class="font-medium text-gray-900">{{ getRoomDisplayName(selectedRoom) }}</h2>
             <p class="text-xs text-gray-500">{{ selectedRoom.isGroup ? 'Group chat' : 'Direct message' }}</p>
           </div>
+          <button
+            @click="selectRoom(null)"
+            class="p-2 hover:bg-gray-100 rounded-lg transition-colors"
+            title="Close chat"
+          >
+            <svg class="w-5 h-5 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
         </div>
 
         <!-- Messages -->
@@ -234,6 +243,9 @@
 </template>
 
 <script setup lang="ts">
+import Pusher from 'pusher-js'
+import type { Channel } from 'pusher-js'
+
 interface User {
   id: string
   username: string
@@ -246,6 +258,7 @@ interface Message {
   content: string
   senderId: string
   createdAt: string
+  chatRoomId?: string
   sender?: { username: string }
 }
 
@@ -259,6 +272,13 @@ interface Room {
 
 const { user, logout, fetchUser, isAuthenticated, isLoading: authLoading } = useAuth()
 const router = useRouter()
+const route = useRoute()
+const config = useRuntimeConfig()
+
+// Pusher instance and channels
+let pusher: Pusher | null = null
+let userChannel: Channel | null = null
+const roomChannels = new Map<string, Channel>()
 
 // State
 const rooms = ref<Room[]>([])
@@ -276,9 +296,6 @@ const isSending = ref(false)
 const isSearchingUsers = ref(false)
 
 const messagesContainer = ref<HTMLElement | null>(null)
-
-// Polling interval
-let pollingInterval: ReturnType<typeof setInterval> | null = null
 
 // Computed
 const filteredRooms = computed(() => {
@@ -333,11 +350,17 @@ async function loadMessages() {
   }
 }
 
-function selectRoom(room: Room) {
+function selectRoom(room: Room | null) {
   selectedRoom.value = room
   messages.value = []
-  loadMessages()
-  startPolling()
+
+  if (room) {
+    router.push({ path: '/chat', query: { roomId: room.id } })
+    loadMessages()
+    subscribeToRoom(room.id)
+  } else {
+    router.push({ path: '/chat' })
+  }
 }
 
 async function sendMessage() {
@@ -399,19 +422,92 @@ async function startChat(userId: string) {
   }
 }
 
-function startPolling() {
-  stopPolling()
-  pollingInterval = setInterval(() => {
-    if (selectedRoom.value) {
-      loadMessages()
-    }
-  }, 3000)
+// Pusher functions
+function initPusher() {
+  if (!config.public.pusherKey || !config.public.pusherCluster) {
+    console.warn('Pusher not configured')
+    return
+  }
+
+  pusher = new Pusher(config.public.pusherKey as string, {
+    cluster: config.public.pusherCluster as string,
+    authEndpoint: '/api/pusher/auth',
+  })
+
+  // Subscribe to user's private channel for direct messages
+  if (user.value?.id) {
+    userChannel = pusher.subscribe(`private-user-${user.value.id}`)
+    userChannel.bind('new-message', handleNewMessage)
+  }
 }
 
-function stopPolling() {
-  if (pollingInterval) {
-    clearInterval(pollingInterval)
-    pollingInterval = null
+function subscribeToRoom(roomId: string) {
+  if (!pusher) return
+
+  // Unsubscribe from previous room channels (keep only the selected one active for messages)
+  // But we still want to receive notifications for all rooms for sidebar updates
+
+  // Subscribe to the room channel if not already subscribed
+  if (!roomChannels.has(roomId)) {
+    const channel = pusher.subscribe(`private-room-${roomId}`)
+    channel.bind('new-message', handleNewMessage)
+    roomChannels.set(roomId, channel)
+  }
+}
+
+function subscribeToAllRooms() {
+  if (!pusher) return
+
+  rooms.value.forEach(room => {
+    if (!roomChannels.has(room.id)) {
+      const channel = pusher!.subscribe(`private-room-${room.id}`)
+      channel.bind('new-message', handleNewMessage)
+      roomChannels.set(room.id, channel)
+    }
+  })
+}
+
+function handleNewMessage(message: Message) {
+  // Update messages if this is for the currently selected room
+  if (selectedRoom.value && message.chatRoomId === selectedRoom.value.id) {
+    // Avoid duplicates
+    if (!messages.value.find(m => m.id === message.id)) {
+      messages.value.push(message)
+      // Scroll to bottom
+      nextTick(() => {
+        if (messagesContainer.value) {
+          messagesContainer.value.scrollTop = messagesContainer.value.scrollHeight
+        }
+      })
+    }
+  }
+
+  // Update sidebar's lastMessage for the relevant room
+  const roomIndex = rooms.value.findIndex(r => r.id === message.chatRoomId)
+  if (roomIndex !== -1) {
+    rooms.value[roomIndex].lastMessage = message
+    // Move room to top of list
+    const [room] = rooms.value.splice(roomIndex, 1)
+    rooms.value.unshift(room)
+  }
+}
+
+function cleanupPusher() {
+  if (userChannel) {
+    userChannel.unbind_all()
+    pusher?.unsubscribe(`private-user-${user.value?.id}`)
+    userChannel = null
+  }
+
+  roomChannels.forEach((channel, roomId) => {
+    channel.unbind_all()
+    pusher?.unsubscribe(`private-room-${roomId}`)
+  })
+  roomChannels.clear()
+
+  if (pusher) {
+    pusher.disconnect()
+    pusher = null
   }
 }
 
@@ -423,9 +519,22 @@ onMounted(async () => {
     return
   }
   await loadRooms()
+
+  // Initialize Pusher for real-time updates
+  initPusher()
+  subscribeToAllRooms()
+
+  // Check URL for roomId and select that room
+  const roomId = route.query.roomId as string
+  if (roomId) {
+    const room = rooms.value.find(r => r.id === roomId)
+    if (room) {
+      selectRoom(room)
+    }
+  }
 })
 
 onUnmounted(() => {
-  stopPolling()
+  cleanupPusher()
 })
 </script>
