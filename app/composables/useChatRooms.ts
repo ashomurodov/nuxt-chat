@@ -45,6 +45,8 @@ export function useChatRooms() {
   }
 
   function addRoom(room: Room) {
+    const exists = rooms.value.some(r => r.id === room.id)
+    if (exists) return
     rooms.value.unshift(room)
   }
 
