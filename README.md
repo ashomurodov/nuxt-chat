@@ -1,4 +1,4 @@
-# Nuxt Chat
+# Mittere
 
 A minimal, fast, and beautiful real-time chat application built with Nuxt 3.
 
