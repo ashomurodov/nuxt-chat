@@ -12,7 +12,7 @@
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
             </svg>
           </div>
-          <span class="font-semibold text-gray-900">nuxt chat</span>
+          <span class="font-semibold text-gray-900">Mittere</span>
         </div>
         <div class="flex items-center gap-8">
           <a href="#features" class="text-sm text-gray-600 hover:text-gray-900 transition-colors">Features</a>
@@ -162,7 +162,7 @@
           Built for humans
         </h2>
         <p class="text-gray-500 text-lg leading-relaxed max-w-2xl mx-auto animate-fade-in-up delay-8">
-          We believe communication should be effortless. Nuxt Chat strips away
+          We believe communication should be effortless. Mittere strips away
           the complexity found in modern messaging apps, leaving you with a
           pure, focused experience.
         </p>
@@ -208,10 +208,10 @@
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
             </svg>
           </div>
-          <span class="text-sm font-medium text-gray-900">nuxt chat</span>
+          <span class="text-sm font-medium text-gray-900">Mittere</span>
         </div>
         <p class="text-sm text-gray-500">
-          &copy; 2025 Nuxt Chat. All rights reserved.
+          &copy; 2025 Mittere. All rights reserved.
         </p>
         <div class="flex items-center gap-6">
           <a href="#" class="text-sm text-gray-500 hover:text-gray-900 transition-colors">Privacy</a>

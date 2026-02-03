@@ -1,4 +1,4 @@
--- Create tables for Nuxt Chat
+-- Create tables for Mittere
 
 -- User table
 CREATE TABLE IF NOT EXISTS "User" (
