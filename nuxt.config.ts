@@ -8,7 +8,7 @@ export default defineNuxtConfig({
   modules: ['@nuxtjs/tailwindcss'],
   app: {
     head: {
-      title: 'Nuxt Chat',
+      title: 'Mittere',
       meta: [
         { name: 'description', content: 'Minimal, fast, and beautiful chat application' }
       ],
