@@ -1,7 +1,9 @@
 <template>
   <div class="h-screen flex bg-white">
+    <!-- Sidebar: full-screen on mobile, fixed width on desktop -->
     <ChatSidebar
       v-show="isSidebarOpen"
+      class="absolute inset-0 z-10 md:relative md:inset-auto"
       :rooms="filteredRooms"
       :selected-room="selectedRoom"
       :is-loading="isLoadingRooms"
@@ -13,7 +15,9 @@
       @logout="logout"
     />
 
+    <!-- Chat Area: hidden on mobile when sidebar is open -->
     <ChatArea
+      v-show="!isSidebarOpen || !isMobile"
       ref="chatAreaRef"
       :room="selectedRoom"
       :messages="messages"
@@ -23,7 +27,7 @@
       :is-sidebar-open="isSidebarOpen"
       @send-message="handleSendMessage"
       @close="handleSelectRoom(null)"
-      @open-sidebar="isSidebarOpen = true"
+      @open-sidebar="handleOpenSidebar"
     />
 
     <ChatNewChatModal
@@ -76,6 +80,11 @@ const { startChat } = useUserSearch()
 const showNewChat = ref(false)
 const isSidebarOpen = ref(true)
 const chatAreaRef = ref<{ scrollToBottom: () => void } | null>(null)
+const isMobile = ref(false)
+
+function checkMobile() {
+  isMobile.value = window.innerWidth < 768
+}
 
 function handleSelectRoom(room: Room | null) {
   selectRoom(room)
@@ -83,7 +92,15 @@ function handleSelectRoom(room: Room | null) {
   if (room) {
     loadMessages(room.id)
     subscribeToRoom(room.id)
+    // On mobile, hide sidebar when a room is selected
+    if (isMobile.value) {
+      isSidebarOpen.value = false
+    }
   }
+}
+
+function handleOpenSidebar() {
+  isSidebarOpen.value = true
 }
 
 async function handleSendMessage(content: string) {
@@ -117,6 +134,10 @@ function handleNewMessage(message: Message) {
 }
 
 onMounted(async () => {
+  // Setup mobile detection
+  checkMobile()
+  window.addEventListener('resize', checkMobile)
+
   await fetchUser()
   if (!isAuthenticated.value) {
     router.push('/login')
@@ -144,5 +165,6 @@ onMounted(async () => {
 
 onUnmounted(() => {
   cleanupPusher(user.value?.id)
+  window.removeEventListener('resize', checkMobile)
 })
 </script>

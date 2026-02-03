@@ -1,5 +1,5 @@
 <template>
-  <aside class="w-80 border-r border-gray-200 flex flex-col">
+  <aside class="w-full md:w-80 border-r border-gray-200 flex flex-col bg-white">
     <div class="p-4 border-b border-gray-200">
       <ChatSidebarHeader @new-chat="$emit('new-chat')" @close="$emit('close')" />
       <ChatSearchInput
