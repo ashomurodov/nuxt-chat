@@ -35,6 +35,18 @@ export default defineEventHandler(async (event) => {
     })
   }
 
+  // Check if email is verified
+  if (!user.emailVerified) {
+    throw createError({
+      statusCode: 403,
+      statusMessage: 'Please verify your email before logging in',
+      data: {
+        code: 'EMAIL_NOT_VERIFIED',
+        email: user.email,
+      },
+    })
+  }
+
   // Generate token and set cookie
   const token = generateToken({ userId: user.id, email: user.email })
   setAuthCookie(event, token)
@@ -45,6 +57,7 @@ export default defineEventHandler(async (event) => {
       email: user.email,
       username: user.username,
       avatar: user.avatar,
+      emailVerified: user.emailVerified,
     },
     token,
   }

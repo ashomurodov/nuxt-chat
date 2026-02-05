@@ -19,8 +19,19 @@
 
       <!-- Login Form -->
       <form @submit.prevent="handleLogin" class="space-y-5 animate-fade-in-up delay-1">
+        <!-- Email Not Verified Message -->
+        <div v-if="emailNotVerified" class="p-4 bg-amber-50 border border-amber-200 rounded-xl text-amber-700 text-sm">
+          <p class="mb-2">Please verify your email before logging in.</p>
+          <NuxtLink
+            :to="`/verify-pending?email=${encodeURIComponent(unverifiedEmail)}`"
+            class="text-amber-800 font-medium hover:underline"
+          >
+            Resend verification email
+          </NuxtLink>
+        </div>
+
         <!-- Error Message -->
-        <div v-if="error" class="p-4 bg-red-50 border border-red-200 rounded-xl text-red-600 text-sm">
+        <div v-else-if="error" class="p-4 bg-red-50 border border-red-200 rounded-xl text-red-600 text-sm">
           {{ error }}
         </div>
 
@@ -85,16 +96,26 @@ const email = ref('')
 const password = ref('')
 const error = ref('')
 const isLoading = ref(false)
+const emailNotVerified = ref(false)
+const unverifiedEmail = ref('')
 
 async function handleLogin() {
   error.value = ''
+  emailNotVerified.value = false
   isLoading.value = true
 
   try {
     await login(email.value, password.value)
   } catch (e: unknown) {
-    const err = e as { data?: { statusMessage?: string } }
-    error.value = err.data?.statusMessage || 'Failed to sign in'
+    const err = e as { data?: { statusMessage?: string; data?: { code?: string; email?: string } } }
+
+    // Check if error is due to unverified email
+    if (err.data?.data?.code === 'EMAIL_NOT_VERIFIED') {
+      emailNotVerified.value = true
+      unverifiedEmail.value = err.data?.data?.email || email.value
+    } else {
+      error.value = err.data?.statusMessage || 'Failed to sign in'
+    }
   } finally {
     isLoading.value = false
   }

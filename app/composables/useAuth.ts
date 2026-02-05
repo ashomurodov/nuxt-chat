@@ -3,6 +3,7 @@ interface User {
   email: string
   username: string
   avatar: string | null
+  emailVerified?: boolean
 }
 
 interface AuthState {
@@ -46,15 +47,32 @@ export function useAuth() {
     router.push('/chat')
   }
 
-  // Register
+  // Register - now redirects to verification pending page
   async function register(email: string, username: string, password: string) {
-    const { user } = await $fetch<{ user: User; token: string }>('/api/auth/register', {
+    await $fetch<{ user: User; message: string }>('/api/auth/register', {
       method: 'POST',
       body: { email, username, password },
+    })
+    // Redirect to verification pending page with email
+    router.push(`/verify-pending?email=${encodeURIComponent(email)}`)
+  }
+
+  // Verify email from token
+  async function verifyEmail(token: string) {
+    const { user } = await $fetch<{ user: User; token: string }>('/api/auth/verify-email', {
+      params: { token },
     })
     authState.user = user
     authState.isAuthenticated = true
     router.push('/chat')
+  }
+
+  // Resend verification email
+  async function resendVerification(email: string) {
+    await $fetch('/api/auth/resend-verification', {
+      method: 'POST',
+      body: { email },
+    })
   }
 
   // Logout
@@ -72,6 +90,8 @@ export function useAuth() {
     fetchUser,
     login,
     register,
+    verifyEmail,
+    resendVerification,
     logout,
   }
 }
