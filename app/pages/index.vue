@@ -1,5 +1,5 @@
 <template>
-  <div class="min-h-screen relative overflow-x-hidden">
+  <div class="min-h-screen-dvh relative overflow-x-hidden">
     <!-- Dot Pattern Background -->
     <div class="fixed inset-0 dot-pattern pointer-events-none animate-fade-in"></div>
 

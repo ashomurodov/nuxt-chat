@@ -13,6 +13,14 @@
         {{ room.lastMessage?.content || 'No messages yet' }}
       </p>
     </div>
+    <div
+      v-if="room.unreadCount && room.unreadCount > 0"
+      class="flex-shrink-0 min-w-5 h-5 px-1.5 bg-gray-900 rounded-full flex items-center justify-center"
+    >
+      <span class="text-xs font-medium text-white">
+        {{ room.unreadCount > 99 ? '99+' : room.unreadCount }}
+      </span>
+    </div>
   </button>
 </template>
 

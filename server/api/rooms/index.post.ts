@@ -1,5 +1,6 @@
 import { prisma } from '../../utils/db'
 import { requireAuth } from '../../utils/auth'
+import { sendToUser } from '../../utils/pusher'
 
 export default defineEventHandler(async (event) => {
   const user = await requireAuth(event)
@@ -70,6 +71,16 @@ export default defineEventHandler(async (event) => {
       },
     },
   })
+
+  // Notify all other members about the new room via Pusher
+  try {
+    for (const memberId of memberIds) {
+      await sendToUser(memberId, 'new-room', room)
+    }
+  } catch (error) {
+    // Don't fail if Pusher fails, room is still created
+    console.error('Pusher error:', error)
+  }
 
   return { room }
 })

@@ -20,4 +20,5 @@ export interface Room {
   isGroup: boolean
   members: { user: User }[]
   lastMessage?: Message
+  unreadCount?: number
 }

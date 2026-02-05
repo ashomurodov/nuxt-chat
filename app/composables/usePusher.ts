@@ -6,6 +6,7 @@ let pusher: Pusher | null = null
 let userChannel: Channel | null = null
 const roomChannels = new Map<string, Channel>()
 const messageCallbacks = new Set<(message: Message) => void>()
+const roomCallbacks = new Set<(room: Room) => void>()
 
 export function usePusher() {
   const config = useRuntimeConfig()
@@ -23,9 +24,10 @@ export function usePusher() {
       authEndpoint: '/api/pusher/auth',
     })
 
-    // Subscribe to user's private channel for direct messages
+    // Subscribe to user's private channel for direct messages and new rooms
     userChannel = pusher.subscribe(`private-user-${userId}`)
     userChannel.bind('new-message', handleNewMessage)
+    userChannel.bind('new-room', handleNewRoom)
   }
 
   function subscribeToRoom(roomId: string) {
@@ -63,9 +65,18 @@ export function usePusher() {
     messageCallbacks.forEach(callback => callback(message))
   }
 
+  function handleNewRoom(room: Room) {
+    roomCallbacks.forEach(callback => callback(room))
+  }
+
   function onNewMessage(callback: (message: Message) => void) {
     messageCallbacks.add(callback)
     return () => messageCallbacks.delete(callback)
+  }
+
+  function onNewRoom(callback: (room: Room) => void) {
+    roomCallbacks.add(callback)
+    return () => roomCallbacks.delete(callback)
   }
 
   function cleanupPusher(userId?: string) {
@@ -87,6 +98,7 @@ export function usePusher() {
     }
 
     messageCallbacks.clear()
+    roomCallbacks.clear()
   }
 
   return {
@@ -95,6 +107,7 @@ export function usePusher() {
     subscribeToAllRooms,
     unsubscribeFromRoom,
     onNewMessage,
+    onNewRoom,
     cleanupPusher,
   }
 }
