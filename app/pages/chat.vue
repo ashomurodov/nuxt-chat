@@ -1,5 +1,5 @@
 <template>
-  <div class="h-screen flex bg-white">
+  <div class="h-screen-dvh flex bg-white">
     <!-- Sidebar: full-screen on mobile, fixed width on desktop -->
     <ChatSidebar
       v-show="isSidebarOpen"
@@ -54,6 +54,8 @@ const {
   selectRoom,
   addRoom,
   updateRoomLastMessage,
+  incrementUnreadCount,
+  markRoomAsRead,
   findRoomById,
 } = useChatRooms()
 
@@ -72,6 +74,7 @@ const {
   subscribeToRoom,
   subscribeToAllRooms,
   onNewMessage,
+  onNewRoom,
   cleanupPusher,
 } = usePusher()
 
@@ -92,6 +95,7 @@ function handleSelectRoom(room: Room | null) {
   if (room) {
     loadMessages(room.id)
     subscribeToRoom(room.id)
+    markRoomAsRead(room.id)
     // On mobile, hide sidebar when a room is selected
     if (isMobile.value) {
       isSidebarOpen.value = false
@@ -125,12 +129,25 @@ function handleNewMessage(message: Message) {
   if (selectedRoom.value && message.chatRoomId === selectedRoom.value.id) {
     addMessage(message)
     nextTick(() => chatAreaRef.value?.scrollToBottom())
+    // Mark as read since user is viewing this room
+    if (message.senderId !== user.value?.id) {
+      markRoomAsRead(selectedRoom.value.id)
+    }
+  } else if (message.chatRoomId && message.senderId !== user.value?.id) {
+    // Increment unread count for rooms not currently selected (only for messages from others)
+    incrementUnreadCount(message.chatRoomId)
   }
 
   // Update sidebar's lastMessage for the relevant room
   if (message.chatRoomId) {
     updateRoomLastMessage(message.chatRoomId, message)
   }
+}
+
+function handleNewRoom(room: Room) {
+  // Add the new room to the list and subscribe to it
+  addRoom(room)
+  subscribeToRoom(room.id)
 }
 
 onMounted(async () => {
@@ -149,8 +166,10 @@ onMounted(async () => {
   // Initialize Pusher for real-time updates
   if (user.value?.id) {
     initPusher(user.value.id)
-    subscribeToAllRooms(filteredRooms.value)
+    // Register callbacks BEFORE subscribing to avoid missing events
     onNewMessage(handleNewMessage)
+    onNewRoom(handleNewRoom)
+    subscribeToAllRooms(filteredRooms.value)
   }
 
   // Check URL for roomId and select that room

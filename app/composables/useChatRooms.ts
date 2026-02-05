@@ -63,6 +63,25 @@ export function useChatRooms() {
     }
   }
 
+  function incrementUnreadCount(roomId: string) {
+    const room = rooms.value.find(r => r.id === roomId)
+    if (room) {
+      room.unreadCount = (room.unreadCount || 0) + 1
+    }
+  }
+
+  async function markRoomAsRead(roomId: string) {
+    const room = rooms.value.find(r => r.id === roomId)
+    if (room) {
+      room.unreadCount = 0
+    }
+    try {
+      await $fetch(`/api/rooms/${roomId}/read`, { method: 'POST' })
+    } catch (e) {
+      console.error('Failed to mark room as read:', e)
+    }
+  }
+
   function findRoomById(roomId: string): Room | undefined {
     return rooms.value.find(r => r.id === roomId)
   }
@@ -78,6 +97,8 @@ export function useChatRooms() {
     selectRoom,
     addRoom,
     updateRoomLastMessage,
+    incrementUnreadCount,
+    markRoomAsRead,
     findRoomById,
   }
 }

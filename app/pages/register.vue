@@ -1,5 +1,5 @@
 <template>
-  <div class="min-h-screen flex items-center justify-center px-6 relative">
+  <div class="min-h-screen-dvh flex items-center justify-center px-6 relative">
     <!-- Dot Pattern Background -->
     <div class="fixed inset-0 dot-pattern pointer-events-none"></div>
 

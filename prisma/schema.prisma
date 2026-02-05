@@ -35,10 +35,11 @@ model ChatRoom {
 }
 
 model ChatRoomMember {
-  id        String   @id @default(cuid())
-  userId    String
+  id         String   @id @default(cuid())
+  userId     String
   chatRoomId String
-  joinedAt  DateTime @default(now())
+  joinedAt   DateTime @default(now())
+  lastReadAt DateTime @default(now())
 
   // Relations
   user     User     @relation(fields: [userId], references: [id], onDelete: Cascade)

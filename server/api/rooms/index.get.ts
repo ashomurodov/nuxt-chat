@@ -43,10 +43,24 @@ export default defineEventHandler(async (event) => {
     },
   })
 
-  const rooms = memberships.map((m) => ({
-    ...m.chatRoom,
-    lastMessage: m.chatRoom.messages[0] || null,
-  }))
+  // Calculate unread counts for each room
+  const roomsWithUnread = await Promise.all(
+    memberships.map(async (m) => {
+      const unreadCount = await prisma.message.count({
+        where: {
+          chatRoomId: m.chatRoomId,
+          createdAt: { gt: m.lastReadAt },
+          senderId: { not: user.id },
+        },
+      })
 
-  return { rooms }
+      return {
+        ...m.chatRoom,
+        lastMessage: m.chatRoom.messages[0] || null,
+        unreadCount,
+      }
+    })
+  )
+
+  return { rooms: roomsWithUnread }
 })
