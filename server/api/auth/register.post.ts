@@ -1,5 +1,10 @@
 import { prisma } from '../../utils/db'
-import { hashPassword, generateToken, setAuthCookie } from '../../utils/auth'
+import { hashPassword } from '../../utils/auth'
+import {
+  generateVerifyToken,
+  getVerifyTokenExpiration,
+  sendVerificationEmail,
+} from '../../utils/email'
 
 export default defineEventHandler(async (event) => {
   const body = await readBody(event)
@@ -44,29 +49,40 @@ export default defineEventHandler(async (event) => {
     })
   }
 
-  // Hash password and create user
+  // Hash password and generate verification token
   const hashedPassword = await hashPassword(password)
+  const verifyToken = generateVerifyToken()
+  const verifyTokenExp = getVerifyTokenExpiration()
 
   const user = await prisma.user.create({
     data: {
       email,
       username,
       password: hashedPassword,
+      emailVerified: false,
+      verifyToken,
+      verifyTokenExp,
     },
     select: {
       id: true,
       email: true,
       username: true,
       avatar: true,
+      emailVerified: true,
     },
   })
 
-  // Generate token and set cookie
-  const token = generateToken({ userId: user.id, email: user.email })
-  setAuthCookie(event, token)
+  // Send verification email
+  try {
+    await sendVerificationEmail(email, username, verifyToken)
+  } catch (error) {
+    // If email fails, still return success but log error
+    // User can request a new verification email later
+    console.error('Failed to send verification email:', error)
+  }
 
   return {
     user,
-    token,
+    message: 'Registration successful. Please check your email to verify your account.',
   }
 })
