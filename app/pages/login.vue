@@ -73,9 +73,9 @@
       </form>
 
       <!-- Divider -->
-      <div class="divider-line my-8">
-        <span class="cross left">+</span>
-        <span class="cross right">+</span>
+      <div class="divider-line my-4">
+        <span class="cross left"></span>
+        <span class="cross right"></span>
       </div>
 
       <!-- Register Link -->
@@ -124,12 +124,12 @@ async function handleLogin() {
 
 <style scoped>
 .texture-bg {
-  background-image: url('~/assets/images/texture.jpg');
+  background-image: url('~/assets/images/texture3.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   filter: grayscale(1);
-  opacity: 0.15;
+  opacity: 0.1;
 }
 
 .divider-line {

@@ -6,17 +6,20 @@
     </div>
     <form @submit.prevent="handleSubmit" class="flex gap-3 items-end">
       <div class="flex-1 relative">
-        <input
+        <textarea
+          ref="textareaRef"
           v-model="message"
-          type="text"
           :maxlength="maxLength"
           placeholder="Type a message..."
-          class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-gray-400 outline-none"
+          rows="1"
+          class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-gray-400 outline-none resize-none overflow-hidden"
           :disabled="disabled || rateLimitCooldown > 0"
+          @input="autoGrow"
+          @keydown.enter.exact="handleEnter"
         />
         <span
           v-if="message.length > maxLength * 0.8"
-          :class="['absolute right-3 top-1/2 -translate-y-1/2 text-xs', message.length >= maxLength ? 'text-red-500' : 'text-gray-400']"
+          :class="['absolute right-3 bottom-3 text-xs', message.length >= maxLength ? 'text-red-500' : 'text-gray-400']"
         >
           {{ message.length }}/{{ maxLength }}
         </span>
@@ -55,11 +58,33 @@ const emit = defineEmits<{
 
 const message = ref('')
 const maxLength = MAX_MESSAGE_LENGTH
+const textareaRef = ref<HTMLTextAreaElement>()
+
+function autoGrow() {
+  const el = textareaRef.value
+  if (!el) return
+  el.style.height = 'auto'
+  el.style.height = Math.min(el.scrollHeight, 150) + 'px'
+}
+
+function resetHeight() {
+  const el = textareaRef.value
+  if (!el) return
+  el.style.height = 'auto'
+}
+
+function handleEnter(e: KeyboardEvent) {
+  if (!e.shiftKey) {
+    e.preventDefault()
+    handleSubmit()
+  }
+}
 
 function handleSubmit() {
   if (message.value.trim()) {
     emit('send', message.value)
     message.value = ''
+    resetHeight()
   }
 }
 </script>
