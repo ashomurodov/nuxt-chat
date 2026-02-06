@@ -24,6 +24,9 @@ export default defineNuxtConfig({
     jwtSecret: process.env.JWT_SECRET,
     pusherAppId: process.env.PUSHER_APP_ID,
     pusherSecret: process.env.PUSHER_SECRET,
+    resendApiKey: process.env.RESEND_API_KEY,
+    appUrl: process.env.APP_URL || 'http://localhost:3000',
+    emailFrom: process.env.EMAIL_FROM || 'Mittere <onboarding@resend.dev>',
     // Public (available on client-side)
     public: {
       pusherKey: process.env.NUXT_PUBLIC_PUSHER_KEY,
