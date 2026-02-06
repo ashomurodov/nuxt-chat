@@ -1,6 +1,9 @@
 import { prisma } from '../../utils/db'
 import { requireAuth } from '../../utils/auth'
 import { sendToRoom, sendToUser } from '../../utils/pusher'
+import { checkMessageRateLimit } from '../../utils/rateLimit'
+
+const MAX_MESSAGE_LENGTH = 500
 
 export default defineEventHandler(async (event) => {
   const user = await requireAuth(event)
@@ -12,6 +15,23 @@ export default defineEventHandler(async (event) => {
     throw createError({
       statusCode: 400,
       statusMessage: 'Content and either receiverId or chatRoomId are required',
+    })
+  }
+
+  // Validate message length
+  if (content.length > MAX_MESSAGE_LENGTH) {
+    throw createError({
+      statusCode: 400,
+      statusMessage: `Message too long. Maximum ${MAX_MESSAGE_LENGTH} characters allowed.`,
+    })
+  }
+
+  // Rate limit check
+  const rateCheck = checkMessageRateLimit(user.id)
+  if (!rateCheck.allowed) {
+    throw createError({
+      statusCode: 429,
+      statusMessage: `Too many messages. Please wait ${rateCheck.retryAfterSeconds} seconds.`,
     })
   }
 
