@@ -7,7 +7,7 @@ const rateLimitStore = new Map<string, UserRateData>()
 
 const MAX_MESSAGES = 10
 const WINDOW_MS = 60 * 1000 // 1 minute window to count messages
-const COOLDOWN_MS = 5 * 1000 // 5 seconds between messages
+const COOLDOWN_MS = 1 * 1000 // 1 second between messages
 const BLOCK_DURATION_MS = 10 * 60 * 1000 // 10 minutes block
 
 export function checkMessageRateLimit(userId: string): { allowed: boolean; retryAfterSeconds?: number } {
