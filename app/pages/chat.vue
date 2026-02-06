@@ -25,6 +25,8 @@
       :is-sending="isSending"
       :current-user-id="user?.id ?? ''"
       :is-sidebar-open="isSidebarOpen"
+      :rate-limit-error="rateLimitError"
+      :rate-limit-cooldown="rateLimitCooldown"
       @send-message="handleSendMessage"
       @close="handleSelectRoom(null)"
       @open-sidebar="handleOpenSidebar"
@@ -63,6 +65,8 @@ const {
   messages,
   isLoadingMessages,
   isSending,
+  rateLimitError,
+  rateLimitCooldown,
   loadMessages,
   sendMessage,
   addMessage,

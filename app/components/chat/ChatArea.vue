@@ -17,6 +17,8 @@
       />
       <ChatMessageInput
         :is-sending="isSending"
+        :rate-limit-error="rateLimitError"
+        :rate-limit-cooldown="rateLimitCooldown"
         @send="handleSend"
       />
     </template>
@@ -33,6 +35,8 @@ interface Props {
   isSending: boolean
   currentUserId: string
   isSidebarOpen?: boolean
+  rateLimitError?: string
+  rateLimitCooldown?: number
 }
 
 defineProps<Props>()

@@ -358,7 +358,13 @@ onMounted(() => {
 .nav__links {
   display: flex;
   align-items: center;
-  gap: 2rem;
+  gap: 0.75rem;
+}
+
+@media (min-width: 768px) {
+  .nav__links {
+    gap: 2rem;
+  }
 }
 
 .nav__link {
@@ -374,14 +380,22 @@ onMounted(() => {
 }
 
 .nav__cta {
-  font-size: 0.8125rem;
+  font-size: 0.75rem;
   font-weight: 500;
   color: white;
   background: #171717;
-  padding: 0.5rem 1rem;
+  padding: 0.375rem 0.75rem;
   border-radius: 0.5rem;
   text-decoration: none;
+  white-space: nowrap;
   transition: background 0.2s, transform 0.15s;
+}
+
+@media (min-width: 768px) {
+  .nav__cta {
+    font-size: 0.8125rem;
+    padding: 0.5rem 1rem;
+  }
 }
 
 .nav__cta:hover {

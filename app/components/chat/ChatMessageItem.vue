@@ -1,5 +1,5 @@
 <template>
-  <div :class="['flex gap-3', isOwnMessage ? 'justify-end' : '']">
+  <div :class="['flex gap-3 min-w-0', isOwnMessage ? 'justify-end' : '']">
     <ChatUserAvatar
       v-if="!isOwnMessage"
       :name="message.sender?.username || 'Unknown'"
@@ -7,13 +7,13 @@
     />
     <div
       :class="[
-        'max-w-md px-4 py-2 rounded-2xl',
+        'max-w-md px-4 py-2 rounded-2xl overflow-hidden',
         isOwnMessage
           ? 'bg-gray-900 text-white rounded-tr-md'
           : 'bg-gray-100 text-gray-900 rounded-tl-md'
       ]"
     >
-      <p class="text-sm">{{ message.content }}</p>
+      <p class="text-sm break-words whitespace-pre-wrap">{{ message.content }}</p>
       <p :class="['text-xs mt-1', isOwnMessage ? 'text-gray-400' : 'text-gray-500']">
         {{ formattedTime }}
       </p>
