@@ -78,9 +78,9 @@
       </form>
 
       <!-- Divider -->
-      <div class="divider-line my-8">
-        <span class="cross left">+</span>
-        <span class="cross right">+</span>
+      <div class="divider-line my-4">
+        <span class="cross left"></span>
+        <span class="cross right"></span>
       </div>
 
       <!-- Login Link -->
@@ -125,7 +125,7 @@ async function handleRegister() {
   background-position: center;
   background-repeat: no-repeat;
   filter: grayscale(1);
-  opacity: 0.15;
+  opacity: 0.1;
 }
 
 .divider-line {
