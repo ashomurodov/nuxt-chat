@@ -1,7 +1,15 @@
 import { Resend } from 'resend'
 import { randomBytes } from 'crypto'
 
-const resend = new Resend(process.env.RESEND_API_KEY)
+let _resend: Resend | null = null
+
+function getResend(): Resend {
+  if (!_resend) {
+    const config = useRuntimeConfig()
+    _resend = new Resend(config.resendApiKey)
+  }
+  return _resend
+}
 
 export function generateVerifyToken(): string {
   return randomBytes(32).toString('hex')
@@ -17,11 +25,13 @@ export async function sendVerificationEmail(
   username: string,
   token: string
 ): Promise<void> {
-  const appUrl = process.env.APP_URL || 'http://localhost:3000'
+  const config = useRuntimeConfig()
+  const appUrl = config.appUrl || 'http://localhost:3000'
   const verifyUrl = `${appUrl}/verify-email?token=${token}`
+  const from = config.emailFrom || 'Mittere <onboarding@resend.dev>'
 
-  await resend.emails.send({
-    from: process.env.EMAIL_FROM || 'Mittere <onboarding@resend.dev>',
+  await getResend().emails.send({
+    from,
     to: email,
     subject: 'Verify your email - Mittere',
     html: `
