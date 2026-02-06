@@ -1,7 +1,7 @@
 <template>
   <div class="min-h-screen-dvh flex items-center justify-center px-6 relative">
-    <!-- Texture Background -->
-    <div class="fixed inset-0 texture-bg pointer-events-none"></div>
+    <!-- Texture Background + Settings -->
+    <TextureSettings />
 
     <div class="w-full max-w-md relative">
       <!-- Logo -->
@@ -123,15 +123,6 @@ async function handleLogin() {
 </script>
 
 <style scoped>
-.texture-bg {
-  background-image: url('~/assets/images/texture3.jpg');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  filter: grayscale(1);
-  opacity: 0.1;
-}
-
 .divider-line {
   position: relative;
   width: 100%;
