@@ -5,10 +5,7 @@ interface UserRateData {
 
 const rateLimitStore = new Map<string, UserRateData>()
 
-const MAX_MESSAGES = 10
-const WINDOW_MS = 60 * 1000 // 1 minute window to count messages
-const COOLDOWN_MS = 1 * 1000 // 1 second between messages
-const BLOCK_DURATION_MS = 10 * 60 * 1000 // 10 minutes block
+import { MAX_MESSAGES, WINDOW_MS, COOLDOWN_MS, BLOCK_DURATION_MS } from './rateLimitVariables'
 
 export function checkMessageRateLimit(userId: string): { allowed: boolean; retryAfterSeconds?: number } {
   const now = Date.now()
