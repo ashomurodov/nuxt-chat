@@ -14,6 +14,7 @@
         :messages="messages"
         :current-user-id="currentUserId"
         :is-loading="isLoading"
+        :is-group="room?.isGroup ?? false"
       />
       <ChatMessageInput
         :is-sending="isSending"

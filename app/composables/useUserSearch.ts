@@ -37,6 +37,19 @@ export function useUserSearch() {
     }
   }
 
+  async function createGroupChat(memberIds: string[], name: string): Promise<Room | null> {
+    try {
+      const { room } = await $fetch<{ room: Room }>('/api/rooms', {
+        method: 'POST',
+        body: { memberIds, name, isGroup: true }
+      })
+      return room
+    } catch (e) {
+      console.error('Failed to create group chat:', e)
+      return null
+    }
+  }
+
   function clearSearch() {
     userSearch.value = ''
     searchedUsers.value = []
@@ -48,6 +61,7 @@ export function useUserSearch() {
     isSearching,
     searchUsers,
     startChat,
+    createGroupChat,
     clearSearch,
   }
 }

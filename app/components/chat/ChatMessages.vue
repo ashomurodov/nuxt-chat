@@ -9,6 +9,7 @@
         :key="message.id"
         :message="message"
         :is-own-message="message.senderId === currentUserId"
+        :is-group="isGroup"
       />
     </template>
   </div>
@@ -21,6 +22,7 @@ interface Props {
   messages: Message[]
   currentUserId: string
   isLoading: boolean
+  isGroup?: boolean
 }
 
 const props = defineProps<Props>()

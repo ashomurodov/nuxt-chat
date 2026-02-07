@@ -24,7 +24,7 @@
     <ChatUserAvatar :name="displayName" />
     <div class="flex-1">
       <h2 class="font-medium text-gray-900">{{ displayName }}</h2>
-      <p class="text-xs text-gray-500">{{ room.isGroup ? 'Group chat' : 'Direct message' }}</p>
+      <p class="text-xs text-gray-500">{{ room.isGroup ? `${room.members.length} members` : 'Direct message' }}</p>
     </div>
     <!-- Desktop only: Close button -->
     <button
