@@ -36,6 +36,7 @@
       v-if="showNewChat"
       @close="showNewChat = false"
       @start-chat="handleStartChat"
+      @create-group="handleCreateGroup"
     />
   </div>
 </template>
@@ -82,7 +83,7 @@ const {
   cleanupPusher,
 } = usePusher()
 
-const { startChat } = useUserSearch()
+const { startChat, createGroupChat } = useUserSearch()
 
 const showNewChat = ref(false)
 const isSidebarOpen = ref(true)
@@ -121,6 +122,15 @@ async function handleSendMessage(content: string) {
 
 async function handleStartChat(userId: string) {
   const room = await startChat(userId)
+  if (room) {
+    addRoom(room)
+    handleSelectRoom(room)
+    showNewChat.value = false
+  }
+}
+
+async function handleCreateGroup(memberIds: string[], groupName: string) {
+  const room = await createGroupChat(memberIds, groupName)
   if (room) {
     addRoom(room)
     handleSelectRoom(room)
