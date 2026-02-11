@@ -6,6 +6,10 @@
       <div class="grid-line grid-line--right"></div>
     </div>
 
+    <!-- Ambient Orbs -->
+    <div class="hero__orb hero__orb--1" aria-hidden="true"></div>
+    <div class="hero__orb hero__orb--2" aria-hidden="true"></div>
+
     <!-- Navigation -->
     <nav class="nav">
       <div class="container nav__inner">
@@ -29,22 +33,22 @@
     <section class="hero">
       <div class="container">
         <div class="hero__content">
-          <div class="hero__badge anim-fade-up" style="--delay: 0.1s">
+          <div class="hero__badge">
             <span class="hero__badge-dot"></span>
             Now in beta
           </div>
 
-          <h1 class="hero__title anim-fade-up" style="--delay: 0.2s">
-            Chat without
-            <span class="hero__title--muted">the clutter</span>
+          <h1 class="hero__title">
+            <span class="hero__title-line"><span class="hero__title-word">Chat</span> <span class="hero__title-word">without</span></span>
+            <span class="hero__title-line hero__title--muted"><span class="hero__title-word">the</span> <span class="hero__title-word">clutter</span></span>
           </h1>
 
-          <p class="hero__subtitle anim-fade-up" style="--delay: 0.35s">
+          <p class="hero__subtitle">
             A minimal chat experience designed for focused conversations.
             No distractions, no noise — just you and your messages.
           </p>
 
-          <div class="hero__actions anim-fade-up" style="--delay: 0.5s">
+          <div class="hero__actions">
             <NuxtLink to="/register" class="btn btn--primary">
               Start chatting
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
@@ -58,7 +62,8 @@
     </section>
 
     <!-- Divider with aligned crosses -->
-    <div class="divider anim-line" style="--delay: 0.6s">
+    <div class="divider">
+      <div class="divider__line"></div>
       <div class="divider__inner">
         <span class="cross">+</span>
         <span class="cross">+</span>
@@ -68,7 +73,7 @@
     <!-- Preview -->
     <section class="preview">
       <div class="container">
-        <div class="preview__window anim-fade-up" style="--delay: 0.7s">
+        <div class="preview__window">
           <div class="preview__header">
             <div class="preview__dots">
               <span></span><span></span><span></span>
@@ -77,19 +82,19 @@
             <div style="width: 52px"></div>
           </div>
           <div class="preview__body">
-            <div class="chat-msg chat-msg--in anim-msg" style="--delay: 0.9s">
+            <div class="chat-msg chat-msg--in">
               <div class="chat-msg__avatar chat-msg__avatar--gray"></div>
               <div class="chat-msg__bubble chat-msg__bubble--in">
                 Hey, how's the project coming along?
               </div>
             </div>
-            <div class="chat-msg chat-msg--out anim-msg" style="--delay: 1.1s">
+            <div class="chat-msg chat-msg--out">
               <div class="chat-msg__bubble chat-msg__bubble--out">
                 Going great! Just finished the landing page.
               </div>
               <div class="chat-msg__avatar chat-msg__avatar--dark"></div>
             </div>
-            <div class="chat-msg chat-msg--in anim-msg" style="--delay: 1.3s">
+            <div class="chat-msg chat-msg--in">
               <div class="chat-msg__avatar chat-msg__avatar--gray"></div>
               <div class="chat-msg__bubble chat-msg__bubble--in">
                 Looks minimal and clean. Love it!
@@ -101,7 +106,8 @@
     </section>
 
     <!-- Divider -->
-    <div class="divider anim-line" style="--delay: 0.8s">
+    <div class="divider">
+      <div class="divider__line"></div>
       <div class="divider__inner">
         <span class="cross">+</span>
         <span class="cross">+</span>
@@ -111,14 +117,14 @@
     <!-- Features -->
     <section id="features" class="features">
       <div class="container">
-        <div class="section-header anim-fade-up" style="--delay: 0.2s">
+        <div class="section-header">
           <span class="section-label">Features</span>
           <h2 class="section-title">Designed for<br>simplicity</h2>
           <p class="section-desc">Every feature serves a purpose. Nothing more, nothing less.</p>
         </div>
 
         <div class="features__grid">
-          <div class="feature-card anim-fade-up" style="--delay: 0.3s">
+          <div class="feature-card">
             <div class="feature-card__icon">
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
@@ -128,7 +134,7 @@
             <p class="feature-card__desc">Messages delivered instantly. No loading spinners, no delays.</p>
           </div>
 
-          <div class="feature-card anim-fade-up" style="--delay: 0.4s">
+          <div class="feature-card">
             <div class="feature-card__icon">
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
                 <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
@@ -139,7 +145,7 @@
             <p class="feature-card__desc">End-to-end encryption keeps your conversations secure.</p>
           </div>
 
-          <div class="feature-card anim-fade-up" style="--delay: 0.5s">
+          <div class="feature-card">
             <div class="feature-card__icon">
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
                 <rect x="3" y="3" width="18" height="18" rx="2" />
@@ -156,7 +162,7 @@
     <!-- About -->
     <section id="about" class="about">
       <div class="container">
-        <div class="about__inner anim-fade-up" style="--delay: 0.2s">
+        <div class="about__inner">
           <span class="section-label">About</span>
           <h2 class="section-title">Built for humans</h2>
           <p class="about__text">
@@ -171,7 +177,7 @@
     <!-- CTA -->
     <section class="cta">
       <div class="container">
-        <div class="cta__card anim-fade-up" style="--delay: 0.2s">
+        <div class="cta__card">
           <div class="cta__content">
             <h2 class="cta__title">Ready to simplify?</h2>
             <p class="cta__desc">
@@ -216,27 +222,230 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, onBeforeUnmount } from 'vue'
 
 const landing = ref(null)
+let ctx = null
 
-onMounted(() => {
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('is-visible')
-        }
-      })
-    },
-    { threshold: 0.15, rootMargin: '0px 0px -40px 0px' }
-  )
+onMounted(async () => {
+  const gsapModule = await import('gsap')
+  const scrollModule = await import('gsap/ScrollTrigger')
+  const gsap = gsapModule.default || gsapModule.gsap
+  const ScrollTrigger = scrollModule.ScrollTrigger || scrollModule.default
+  gsap.registerPlugin(ScrollTrigger)
 
-  if (landing.value) {
-    landing.value.querySelectorAll('.anim-fade-up, .anim-line, .anim-msg').forEach((el) => {
-      observer.observe(el)
+  // Respect reduced motion
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+  if (prefersReducedMotion) {
+    gsap.set('.nav, .hero__badge, .hero__title-word, .hero__subtitle, .hero__actions .btn, .hero__orb', {
+      opacity: 1, y: 0, scale: 1
     })
+    return
   }
+
+  ctx = gsap.context(() => {
+
+    // ========================================
+    // HERO ENTRANCE TIMELINE
+    // ========================================
+    const hero = gsap.timeline({ defaults: { ease: 'power3.out' } })
+
+    hero
+      // Nav slides down
+      .fromTo('.nav',
+        { y: -30, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.7 }
+      )
+      // Badge pops in
+      .fromTo('.hero__badge',
+        { y: 16, opacity: 0, scale: 0.96 },
+        { y: 0, opacity: 1, scale: 1, duration: 0.5, ease: 'back.out(1.5)' },
+        0.2
+      )
+      // Title words reveal upward through clip mask
+      .fromTo('.hero__title-word',
+        { yPercent: 110, opacity: 0 },
+        { yPercent: 0, opacity: 1, duration: 0.9, stagger: 0.07, ease: 'power4.out' },
+        0.35
+      )
+      // Subtitle fades in
+      .fromTo('.hero__subtitle',
+        { y: 20, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.7 },
+        0.9
+      )
+      // Buttons stagger up
+      .fromTo('.hero__actions .btn',
+        { y: 16, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.5, stagger: 0.1 },
+        1.05
+      )
+      // Orbs fade in
+      .fromTo('.hero__orb',
+        { scale: 0.7, opacity: 0 },
+        { scale: 1, opacity: 1, duration: 1.8, ease: 'power2.out' },
+        0.3
+      )
+
+    // ========================================
+    // DIVIDERS — line draw + cross spin
+    // ========================================
+    gsap.utils.toArray('.divider').forEach((div) => {
+      const line = div.querySelector('.divider__line')
+      const crosses = div.querySelectorAll('.cross')
+
+      gsap.fromTo(line,
+        { scaleX: 0 },
+        {
+          scaleX: 1, duration: 0.9, ease: 'power2.inOut',
+          scrollTrigger: { trigger: div, start: 'top 88%' }
+        }
+      )
+
+      gsap.fromTo(crosses,
+        { scale: 0, rotation: 90, opacity: 0 },
+        {
+          scale: 1, rotation: 0, opacity: 1,
+          duration: 0.5, stagger: 0.08, ease: 'back.out(2)',
+          delay: 0.35,
+          scrollTrigger: { trigger: div, start: 'top 88%' }
+        }
+      )
+    })
+
+    // ========================================
+    // PREVIEW — entrance + parallax
+    // ========================================
+    gsap.fromTo('.preview__window',
+      { y: 60, opacity: 0, scale: 0.97 },
+      {
+        y: 0, opacity: 1, scale: 1,
+        duration: 1, ease: 'power3.out',
+        scrollTrigger: { trigger: '.preview', start: 'top 80%' }
+      }
+    )
+
+    gsap.fromTo('.chat-msg',
+      { y: 20, opacity: 0, scale: 0.97 },
+      {
+        y: 0, opacity: 1, scale: 1,
+        duration: 0.45, stagger: 0.18, ease: 'power2.out',
+        scrollTrigger: { trigger: '.preview__body', start: 'top 75%' }
+      }
+    )
+
+    // Subtle parallax float
+    gsap.to('.preview__window', {
+      y: -30,
+      scrollTrigger: {
+        trigger: '.preview',
+        start: 'top bottom',
+        end: 'bottom top',
+        scrub: 1.5
+      }
+    })
+
+    // ========================================
+    // FEATURES — header + cards + icons
+    // ========================================
+    gsap.fromTo('.section-header',
+      { y: 30, opacity: 0 },
+      {
+        y: 0, opacity: 1, duration: 0.7, ease: 'power3.out',
+        scrollTrigger: { trigger: '.features', start: 'top 78%' }
+      }
+    )
+
+    gsap.fromTo('.feature-card',
+      { y: 40, opacity: 0 },
+      {
+        y: 0, opacity: 1, duration: 0.6, stagger: 0.12, ease: 'power3.out',
+        scrollTrigger: { trigger: '.features__grid', start: 'top 82%' }
+      }
+    )
+
+    gsap.fromTo('.feature-card__icon',
+      { scale: 0, rotation: -15 },
+      {
+        scale: 1, rotation: 0,
+        duration: 0.5, stagger: 0.12, ease: 'back.out(2.5)',
+        delay: 0.3,
+        scrollTrigger: { trigger: '.features__grid', start: 'top 82%' }
+      }
+    )
+
+    // ========================================
+    // ABOUT
+    // ========================================
+    gsap.fromTo('.about__inner',
+      { y: 40, opacity: 0 },
+      {
+        y: 0, opacity: 1, duration: 0.8, ease: 'power3.out',
+        scrollTrigger: { trigger: '.about', start: 'top 78%' }
+      }
+    )
+
+    // ========================================
+    // CTA — card + corner crosses
+    // ========================================
+    gsap.fromTo('.cta__card',
+      { y: 40, opacity: 0, scale: 0.96 },
+      {
+        y: 0, opacity: 1, scale: 1,
+        duration: 0.9, ease: 'power3.out',
+        scrollTrigger: { trigger: '.cta', start: 'top 72%' }
+      }
+    )
+
+    gsap.fromTo('.cta__cross',
+      { scale: 0, rotation: 180, opacity: 0 },
+      {
+        scale: 1, rotation: 0, opacity: 1,
+        duration: 0.6, stagger: 0.08, ease: 'back.out(3)',
+        delay: 0.4,
+        scrollTrigger: { trigger: '.cta__card', start: 'top 72%' }
+      }
+    )
+
+    // ========================================
+    // FOOTER
+    // ========================================
+    gsap.fromTo('.footer__inner',
+      { y: 20, opacity: 0 },
+      {
+        y: 0, opacity: 1, duration: 0.5, ease: 'power3.out',
+        scrollTrigger: { trigger: '.footer', start: 'top 92%' }
+      }
+    )
+
+    // ========================================
+    // ORB PARALLAX — drift with scroll
+    // ========================================
+    gsap.to('.hero__orb--1', {
+      y: -80, scale: 1.15,
+      scrollTrigger: {
+        trigger: '.hero',
+        start: 'top top',
+        end: 'bottom top',
+        scrub: 2
+      }
+    })
+
+    gsap.to('.hero__orb--2', {
+      y: -50, x: 30,
+      scrollTrigger: {
+        trigger: '.hero',
+        start: 'top top',
+        end: 'bottom top',
+        scrub: 2
+      }
+    })
+
+  }, landing.value)
+})
+
+onBeforeUnmount(() => {
+  ctx?.revert()
 })
 </script>
 
@@ -252,7 +461,7 @@ onMounted(() => {
 }
 
 .container {
-  max-width: 72rem; /* 1152px — matches max-w-6xl */
+  max-width: 72rem;
   margin: 0 auto;
   padding: 0 1.5rem;
 }
@@ -264,8 +473,7 @@ onMounted(() => {
 }
 
 /* ============================================
-   GRID LINES — sit at max-width edges,
-   content padding creates the breathing room
+   GRID LINES
    ============================================ */
 
 .grid-lines {
@@ -295,6 +503,35 @@ onMounted(() => {
 }
 
 /* ============================================
+   AMBIENT ORBS
+   ============================================ */
+
+.hero__orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0;
+}
+
+.hero__orb--1 {
+  top: 8%;
+  right: -8%;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(120, 119, 198, 0.07) 0%, transparent 70%);
+}
+
+.hero__orb--2 {
+  top: 35%;
+  left: -12%;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(255, 180, 120, 0.05) 0%, transparent 70%);
+}
+
+/* ============================================
    NAVIGATION
    ============================================ */
 
@@ -308,7 +545,7 @@ onMounted(() => {
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border-bottom: 1px solid #e5e5e5;
-  animation: slideDown 0.5s ease-out both;
+  opacity: 0;
 }
 
 .nav__inner {
@@ -436,6 +673,7 @@ onMounted(() => {
   border-radius: 100px;
   margin-bottom: 1.5rem;
   letter-spacing: 0.02em;
+  opacity: 0;
 }
 
 .hero__badge-dot {
@@ -455,8 +693,18 @@ onMounted(() => {
   margin: 0 0 1.5rem;
 }
 
-.hero__title--muted {
+.hero__title-line {
   display: block;
+  overflow: hidden;
+  padding-bottom: 0.08em;
+}
+
+.hero__title-word {
+  display: inline-block;
+  opacity: 0;
+}
+
+.hero__title--muted {
   color: #a3a3a3;
 }
 
@@ -467,12 +715,17 @@ onMounted(() => {
   max-width: 32rem;
   margin: 0 0 2.5rem;
   font-weight: 400;
+  opacity: 0;
 }
 
 .hero__actions {
   display: flex;
   flex-wrap: wrap;
   gap: 0.75rem;
+}
+
+.hero__actions .btn {
+  opacity: 0;
 }
 
 /* ============================================
@@ -538,15 +791,14 @@ onMounted(() => {
   width: 100%;
 }
 
-/* The actual horizontal line */
-.divider::before {
-  content: '';
+.divider__line {
   position: absolute;
   top: 50%;
-  left: 0px;
-  right: 0px;
+  left: 0;
+  right: 0;
   height: 1px;
   background: #e5e5e5;
+  transform-origin: center;
 }
 
 .divider__inner {
@@ -765,6 +1017,10 @@ onMounted(() => {
   background: #fafafa;
 }
 
+.feature-card:hover .feature-card__icon {
+  transform: scale(1.05) rotate(3deg);
+}
+
 .feature-card__icon {
   width: 2.75rem;
   height: 2.75rem;
@@ -776,6 +1032,7 @@ onMounted(() => {
   justify-content: center;
   color: #404040;
   margin-bottom: 1.25rem;
+  transition: transform 0.3s ease;
 }
 
 .feature-card__title {
@@ -946,71 +1203,37 @@ onMounted(() => {
 }
 
 /* ============================================
-   ANIMATIONS
+   ANIMATIONS (continuous only)
    ============================================ */
-
-@keyframes slideDown {
-  from {
-    opacity: 0;
-    transform: translateY(-10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
 
 @keyframes pulse {
   0%, 100% { opacity: 1; }
   50% { opacity: 0.4; }
 }
 
-/* Scroll-triggered fade up */
-.anim-fade-up {
-  opacity: 0;
-  transform: translateY(24px);
-  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
-              transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
-  transition-delay: var(--delay, 0s);
+/* Scroll behavior for anchor links */
+html {
+  scroll-behavior: smooth;
 }
 
-.anim-fade-up.is-visible {
-  opacity: 1;
-  transform: translateY(0);
-}
+/* ============================================
+   REDUCED MOTION
+   ============================================ */
 
-/* Scroll-triggered line expand */
-.anim-line {
-  transform: scaleX(0);
-  transform-origin: center;
-  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-  transition-delay: var(--delay, 0s);
-}
-
-.anim-line.is-visible {
-  transform: scaleX(1);
-}
-
-/* Chat messages */
-.anim-msg {
-  opacity: 0;
-  transform: translateY(8px);
-  transition: opacity 0.5s ease-out, transform 0.5s ease-out;
-  transition-delay: var(--delay, 0s);
-}
-
-.anim-msg.is-visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.01ms !important;
     animation-delay: 0s !important;
     transition-duration: 0.01ms !important;
     transition-delay: 0s !important;
+  }
+
+  .nav,
+  .hero__badge,
+  .hero__title-word,
+  .hero__subtitle,
+  .hero__actions .btn {
+    opacity: 1 !important;
   }
 }
 </style>
